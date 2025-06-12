@@ -1,0 +1,47 @@
+[
+  {
+    "Customer": "Alice Johnson",
+    "Email": "alice.johnson@example.com",
+    "Amount": 250.75,
+    "Date": "2025-05-01",
+    "Status": "Paid",
+    "Department": "Sales",
+    "Recurring": true 
+  },
+  {
+    "Customer": "Bob Smith",
+    "Email": "bob.smith@example.com",
+    "Amount": 450.00,
+    "Date": "2025-05-03",
+    "Status": "Pending",
+    "Department": "Marketing", 
+    "Recurring": true 
+  },
+  {
+    "Customer": "Carol Lee",
+    "Email": "carol.lee@example.com",
+    "Amount": 125.50,
+    "Date": "2025-04-28",
+    "Status": "Overdue",
+    "Department": "Finance",
+    "Recurring": false 
+  },
+  {
+    "Customer": "David Kim",
+    "Email": "david.kim@example.com",
+    "Amount": 980.00,
+    "Date": "2025-05-05",
+    "Status": "Paid",
+    "Department": "IT",
+    "Recurring": true 
+  },
+  {
+    "Customer": "Eve Martinez",
+    "Email": "eve.martinez@example.com",
+    "Amount": 320.20,
+    "Date": "2025-05-02",
+    "Status": "Pending",
+    "Department": "Operations"
+    "Recurring": false
+  }
+]

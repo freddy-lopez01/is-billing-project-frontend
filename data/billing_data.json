@@ -1,0 +1,30 @@
+{
+  "billing": {
+    "storage": [
+      {
+        "volume_name": "roylab",
+        "date": "2025-04-29",
+        "size_tb": 3,
+        "index": "2015P1",
+        "owner": "Bitty Roy",
+        "users": ["bit", "cdelevic"]
+      },
+      {
+        "volume_name": "widomlab",
+        "date": "2025-04-29",
+        "size_tb": 2,
+        "index": "2019R1",
+        "owner": "Madison Kadrmas",
+        "users": ["jwidom", "mkadrmas", "nicoconi", "kpai", "tcoulson", "syadav"]
+      },
+      {
+        "volume_name": "widomlab",
+        "date": "2025-04-29",
+        "size_tb": 8,
+        "index": "217921",
+        "owner": "Madison Kadrmas",
+        "users": ["jwidom", "mkadrmas", "nicoconi", "kpai", "tcoulson", "syadav"]
+      }
+    ]
+  }
+}
