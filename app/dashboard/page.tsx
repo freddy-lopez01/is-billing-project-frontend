@@ -1,7 +1,10 @@
 // app/dashboard/page.tsx or page.jsx
-//
+import InvoiceStatusSummary from '@/app/ui/dashboard/tally-cards';
+import { promises as fs } from 'fs';
 
 export default async function Dashboard() {
+  const file = await fs.readFile(process.cwd() + '/data/recurring.json', 'utf8');
+  const data = JSON.parse(file);
 
   
   return (
@@ -12,22 +15,7 @@ export default async function Dashboard() {
       <p className="text-gray-600 mb-8">
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="text-xl font-semibold mb-2">Card One</h2>
-          <p className="text-gray-600">Some placeholder content for card one.</p>
-        </div>
-
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="text-xl font-semibold mb-2">Card Two</h2>
-          <p className="text-gray-600">More placeholder content for card two.</p>
-        </div>
-
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="text-xl font-semibold mb-2">Card Three</h2>1
-          <p className="text-gray-600">Even more placeholder content for card three.</p>
-        </div>
-      </div>
+	  < InvoiceStatusSummary invoices={data} /> 
     </div>
   );
 }

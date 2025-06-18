@@ -1,10 +1,12 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
+import React from 'react';
 import { lusitana } from '@/app/ui/fonts';
 import { FormattedCustomersTable } from '@/app/lib/definitions';
-import { formatDateToLocal, formatCurrency, totalCost } from '@/app/lib/utils';
-
+import { formatDateToLocal, totalCost } from '@/app/lib/utils';
+import { AnimatePresence, motion } from 'framer-motion';
+import InfoCard from '@/app/ui/invoices/info-card';
 export default function CustomersTable({
   customers,
 }: {
@@ -14,11 +16,7 @@ export default function CustomersTable({
 
   const toggleRow = (id: number) => {
     const newSet = new Set(expandedRows);
-    if (newSet.has(id)) {
-      newSet.delete(id);
-    } else {
-      newSet.add(id);
-    }
+    newSet.has(id) ? newSet.delete(id) : newSet.add(id);
     setExpandedRows(newSet);
   };
 
@@ -46,18 +44,19 @@ export default function CustomersTable({
                           {isOpen ? 'Hide' : 'Details'}
                         </span>
                       </div>
-                      {isOpen && (
-                        <div className="pt-4 text-sm text-gray-600 space-y-1">
-                          <p>Quantity: {customer.quantity}</p>
-                          <p>Start: {formatDateToLocal(customer.start_date)}</p>
-                          <p>End: {formatDateToLocal(customer.end_date)}</p>
-                          <p>Frequency: {customer.frequency_id}</p>
-                          <p>Total: {totalCost(customer.quantity, customer.unit_price)}</p>
-                          <p>Approvers: {customer.approvers?.join(', ')}</p>
-                          <p>Contacts: {customer.contacts?.join(', ')}</p>
-                          <p>Description: {customer.description}</p>
-                        </div>
-                      )}
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="overflow-hidden pt-4 text-sm text-gray-600 space-y-1"
+                          >
+						  <InfoCard customer={customer}/>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   );
                 })}
@@ -71,7 +70,7 @@ export default function CustomersTable({
                     <th className="px-3 py-5 font-medium">Quantity</th>
                     <th className="px-3 py-5 font-medium">Start Date</th>
                     <th className="px-3 py-5 font-medium">End Date</th>
-                    <th className="px-3 py-5 font-medium">Frequency</th>
+                    <th className="px-3 py-5 font-medium">Status</th>
                     <th className="px-3 py-5 font-medium">Total</th>
                   </tr>
                 </thead>
@@ -79,9 +78,8 @@ export default function CustomersTable({
                   {customers?.map((customer) => {
                     const isOpen = expandedRows.has(customer.service_id);
                     return (
-                      <>
+                      <React.Fragment key={customer.service_id}>
                         <tr
-                          key={customer.service_id}
                           className="text-sm hover:bg-gray-50 cursor-pointer"
                           onClick={() => toggleRow(customer.service_id)}
                         >
@@ -101,22 +99,30 @@ export default function CustomersTable({
                             {formatDateToLocal(customer.end_date)}
                           </td>
                           <td className="whitespace-nowrap px-3 py-3">
-                            {customer.frequency_id}
+                            n/a
                           </td>
                           <td className="whitespace-nowrap bg-green-50 px-3 py-3">
                             {totalCost(customer.quantity, customer.unit_price)}
                           </td>
                         </tr>
-                        {isOpen && (
-                          <tr className="text-sm text-gray-600 bg-gray-50">
-                            <td colSpan={7} className="px-6 py-4 space-y-1">
-                              <p><strong>Approvers:</strong> {customer.approvers?.join(', ')}</p>
-                              <p><strong>Contacts:</strong> {customer.contacts?.join(', ')}</p>
-                              <p><strong>Description:</strong> {customer.description}</p>
-                            </td>
-                          </tr>
-                        )}
-                      </>
+                        <tr>
+                          <td colSpan={7} className="p-0">
+                            <AnimatePresence>
+                              {isOpen && (
+                                <motion.div
+                                  initial={{ opacity: 0 }}
+                                  animate={{height: 'auto', opacity: 1 }}
+                                  exit={{ opacity: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="overflow-hidden bg-gray-50 px-6 py-4 text-sm text-gray-600 space-y-1"
+                                >
+						        <InfoCard customer={customer}/>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </td>
+                        </tr>
+                      </React.Fragment>
                     );
                   })}
                 </tbody>
@@ -128,4 +134,3 @@ export default function CustomersTable({
     </div>
   );
 }
-
