@@ -72,6 +72,14 @@ export type FormattedCustomersTable = {
   frequency_id: number;
 };
 
+export type Props = {
+  statusCounts: {
+    paid: number;
+    pending: number;
+    denied: number;
+  };
+};
+
 export type CustomerField = {
   id: string;
   name: string;

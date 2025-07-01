@@ -4,11 +4,10 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import Props from '@/app/lib/definitions'; 
 
 const COLORS = {
-  paid: '#22c55e',    // green
-  pending: '#facc15', // yellow
-  denied: '#ef4444',  // red
+  paid: 'rgba(113, 231, 150, 1)',    // soft green
+  pending: 'rgba(253, 240, 150, 1)', // soft yellow
+  denied: 'rgba(252, 110, 150, 1)',  // soft red
 };
-
 
 export default function InvoiceDonutChart({ statusCounts }: Props) {
   const data = [

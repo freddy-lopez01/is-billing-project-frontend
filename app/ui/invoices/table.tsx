@@ -66,7 +66,7 @@ export default function CustomersTable({
                 <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
                   <tr>
                     <th className="px-4 py-5 font-medium sm:pl-6">Service ID</th>
-                    <th className="px-3 py-5 font-medium">Src index</th>
+                    <th className="px-3 py-5 font-medium">SRC Index -> DST Index</th>
                     <th className="px-3 py-5 font-medium">Quantity</th>
                     <th className="px-3 py-5 font-medium">Start Date</th>
                     <th className="px-3 py-5 font-medium">End Date</th>
@@ -87,11 +87,10 @@ export default function CustomersTable({
                             {customer.service_id}
                           </td>
                           <td className="whitespace-nowrap px-3 py-3">
-                            {customer.src_index}
+                            {customer.src_index} -> {customer.dst_index}
                           </td>
                           <td className="whitespace-nowrap px-3 py-3">
-                            {customer.quantity}
-                          </td>
+                            {customer.quantity} </td>
                           <td className="whitespace-nowrap px-3 py-3">
                             {formatDateToLocal(customer.start_date)}
                           </td>

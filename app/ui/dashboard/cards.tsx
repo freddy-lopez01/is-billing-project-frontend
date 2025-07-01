@@ -1,4 +1,4 @@
-export default function StorageCard({ entry }: { entry: StorageEntry }) {
+export default function Cards({ entry }: { entry: StorageEntry }) {
   return (
 	  <div className="bg-white rounded-xl shadow p-6">
           <h2 className="text-xl font-semibold mb-2">Card One</h2>
